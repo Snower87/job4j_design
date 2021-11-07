@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 /** Класс BackwardArrayIt перебирает элементы массива в обратном порядке
  * @author Sergei Begletsov
  * @since 06.11.2021
- * @version 1
+ * @version 2
  */
 
 public class BackwardArrayIt implements Iterator<Integer> {
@@ -20,7 +20,7 @@ public class BackwardArrayIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        return point > -1 && point < data.length;
+        return point >= 0;
     }
 
     @Override
