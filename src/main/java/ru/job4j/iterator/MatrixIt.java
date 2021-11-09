@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 /** Класс MatrixIt перебирает элементы двумерного массива
  * @author Sergei Begletsov
  * @since 08.11.2021
- * @version 2
+ * @version 3
  */
 
 public class MatrixIt implements Iterator<Integer> {
@@ -20,13 +20,9 @@ public class MatrixIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        while (row < data.length) {
-            if (data[row].length == 0 || column >= data[row].length) {
-                row++;
-                column = 0;
-            } else {
-                break;
-            }
+        while (row < data.length && (data[row].length == 0 || column >= data[row].length)) {
+            row++;
+            column = 0;
         }
         return row < data.length;
     }
