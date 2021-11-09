@@ -1,7 +1,13 @@
-package ru.job4j.it;
+package ru.job4j.iterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+/** Класс MatrixIt перебирает элементы двумерного массива
+ * @author Sergei Begletsov
+ * @since 08.11.2021
+ * @version 1
+ */
 
 public class MatrixIt implements Iterator<Integer> {
     private final int[][] data;
