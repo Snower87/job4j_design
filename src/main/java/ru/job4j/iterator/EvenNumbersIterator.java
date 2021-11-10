@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 /** Класс EvenNumbersIterator перебирает четные числа массива
  * @author Sergei Begletsov
  * @since 09.11.2021
- * @version 2
+ * @version 3
  */
 
 public class EvenNumbersIterator implements Iterator<Integer> {
@@ -20,13 +20,15 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
+        boolean rsl = false;
         while (index < data.length) {
             if (data[index] % 2 == 0) {
-                return true;
+                rsl = true;
+                break;
             }
             index++;
         }
-        return false;
+        return rsl;
     }
 
     @Override
