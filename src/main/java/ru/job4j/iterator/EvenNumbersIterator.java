@@ -7,13 +7,12 @@ import java.util.function.Consumer;
 /** Класс EvenNumbersIterator перебирает четные числа массива
  * @author Sergei Begletsov
  * @since 09.11.2021
- * @version 1
+ * @version 2
  */
 
 public class EvenNumbersIterator implements Iterator<Integer> {
     private int[] data;
-    private int indexHasNext = 0;
-    private int indexNext = 0;
+    private int index = 0;
 
     public EvenNumbersIterator(int[] data) {
         this.data = data;
@@ -21,23 +20,19 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        while (indexHasNext < data.length) {
-            if (data[indexHasNext] % 2 == 0) {
-                indexHasNext++;
+        while (index < data.length) {
+            if (data[index] % 2 == 0) {
                 return true;
             }
-            indexHasNext++;
+            index++;
         }
         return false;
     }
 
     @Override
     public Integer next() {
-        while (indexNext < data.length) {
-            if (data[indexNext] % 2 == 0) {
-                return data[indexNext++];
-            }
-            indexNext++;
+        if (hasNext()) {
+            return data[index++];
         }
         throw new NoSuchElementException();
     }
