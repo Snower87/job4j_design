@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/** Класс Generics перебирает элементы массива в прямом порядке
+/** Класс Generics практира работы с bounded Wildcard
  * @author Sergei Begletsov
  * @since 16.11.2021
- * @version 1
+ * @version 2
  */
 
 public class Generics {
@@ -25,14 +25,14 @@ public class Generics {
         gen.printObject(third);
         System.out.println();
 
-        gen.printBoundedWildCard(first);
+        //gen.printBoundedWildCard(first);
         gen.printBoundedWildCard(second);
         gen.printBoundedWildCard(third);
         System.out.println();
 
         gen.printLowerBoundedWildCard(first);
         gen.printLowerBoundedWildCard(second);
-        gen.printLowerBoundedWildCard(third);
+        //gen.printLowerBoundedWildCard(third);
     }
 
     public void printObject(List<?> list) {
@@ -42,15 +42,15 @@ public class Generics {
         }
     }
 
-    public void printBoundedWildCard(List<? extends Animal> list) {
-        for (Iterator<?> it = list.iterator(); it.hasNext();) {
+    public void printBoundedWildCard(List<? extends Predator> list) {
+        for (Iterator<? extends Predator> it = list.iterator(); it.hasNext();) {
             Object next = it.next();
             System.out.println("Текущий элемент: " + next);
         }
     }
 
-    public void printLowerBoundedWildCard(List<? super Tiger> list) {
-        for (Iterator<?> it = list.iterator(); it.hasNext();) {
+    public void printLowerBoundedWildCard(List<? super Predator> list) {
+        for (Iterator<? super Predator> it = list.iterator(); it.hasNext();) {
             Object next = it.next();
             System.out.println("Текущий элемент: " + next);
         }
