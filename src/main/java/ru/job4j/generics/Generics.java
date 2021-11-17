@@ -7,7 +7,7 @@ import java.util.List;
 /** Класс Generics практира работы с bounded Wildcard
  * @author Sergei Begletsov
  * @since 16.11.2021
- * @version 2
+ * @version 3
  */
 
 public class Generics {
@@ -25,14 +25,14 @@ public class Generics {
         gen.printObject(third);
         System.out.println();
 
-        //gen.printBoundedWildCard(first);
+        /*gen.printBoundedWildCard(first);*/
         gen.printBoundedWildCard(second);
         gen.printBoundedWildCard(third);
         System.out.println();
 
         gen.printLowerBoundedWildCard(first);
         gen.printLowerBoundedWildCard(second);
-        //gen.printLowerBoundedWildCard(third);
+        /*gen.printLowerBoundedWildCard(third);*/
     }
 
     public void printObject(List<?> list) {
