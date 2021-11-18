@@ -6,7 +6,7 @@ import java.util.Map;
 /** Класс MemStore - каркас универсального хранилища
  * @author Sergei Begletsov
  * @since 18.11.2021
- * @version 1
+ * @version 2
  */
 
 public final class MemStore<T extends Base> implements Store<T> {
@@ -29,13 +29,6 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        T value = null;
-        for (String key: mem.keySet()) {
-            if (key.equals(id)) {
-                value = mem.get(key);
-                break;
-            }
-        }
-        return value;
+        return mem.get(id);
     }
 }
