@@ -10,7 +10,7 @@ import java.util.Objects;
 /** Класс SimpleArrayList реализует динамический массив
  * @author Sergei Begletsov
  * @since 27.11.2021
- * @version 1
+ * @version 2
  */
 
 public class SimpleArrayList<T> implements List<T> {
@@ -41,16 +41,14 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T newValue) {
-        Objects.checkIndex(index, size);
-        T rsl = container[index];
+        T rsl = get(index);
         container[index] = newValue;
         return rsl;
     }
 
     @Override
     public T remove(int index) {
-        Objects.checkIndex(index, size);
-        T rsl = container[index];
+        T rsl = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - size - 1);
         container[container.length - 1] = null;
         size--;
