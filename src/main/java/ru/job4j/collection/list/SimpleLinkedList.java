@@ -8,7 +8,7 @@ import java.util.Objects;
 /** Класс SimpleLinkedList реализует простой односвязанный список
  * @author Sergei Begletsov
  * @since 28.11.2021
- * @version 1
+ * @version 2
  */
 
 public class SimpleLinkedList<E> implements List<E> {
@@ -32,9 +32,7 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        if (Objects.checkIndex(index, size) != index) {
-            throw new IndexOutOfBoundsException();
-        }
+        Objects.checkIndex(index, size);
         Node<E> rsl = first;
         for (int i = 0; i < index; i++) {
             rsl = rsl.next;
