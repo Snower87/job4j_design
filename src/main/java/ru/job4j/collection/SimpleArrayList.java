@@ -7,10 +7,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-/** Класс SimpleArrayList реализует динамический массив
+/** Класс SimpleArrayList реализует динамический список на массиве
  * @author Sergei Begletsov
  * @since 27.11.2021
- * @version 2
+ * @version 3
  */
 
 public class SimpleArrayList<T> implements List<T> {
@@ -50,7 +50,7 @@ public class SimpleArrayList<T> implements List<T> {
     public T remove(int index) {
         T rsl = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - size - 1);
-        container[container.length - 1] = null;
+        container[size - 1] = null;
         size--;
         modCount++;
         return rsl;
