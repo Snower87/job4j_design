@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 /** Класс ForwardLinked реализует односвязанный список
  * @author Sergei Begletsov
  * @since 01.12.2021
- * @version 3
+ * @version 4
  */
 
 public class ForwardLinked<T> implements Iterable<T> {
@@ -41,9 +41,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public void addFirst(T value) {
-        Node<T> newNode = new Node<>(value, null);
-        newNode.next = head;
-        head = newNode;
+        head = new Node<>(value, head);
         modCount++;
     }
 
