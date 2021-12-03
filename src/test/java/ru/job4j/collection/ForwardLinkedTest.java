@@ -32,4 +32,16 @@ public class ForwardLinkedTest {
         Iterator<Integer> it = linked.iterator();
         assertThat(it.next(), is(2));
     }
+
+    @Test
+    public void whenAdd3ElementsAndRemove2() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.add(2);
+        linked.add(3);
+        assertThat(linked.deleteFirst(), is(1));
+        assertThat(linked.deleteFirst(), is(2));
+        Iterator<Integer> it = linked.iterator();
+        assertThat(it.next(), is(3));
+    }
 }
