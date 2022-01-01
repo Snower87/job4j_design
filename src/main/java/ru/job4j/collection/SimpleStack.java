@@ -3,7 +3,7 @@ package ru.job4j.collection;
 /** Класс SimpleStack реализует простой стек
  * @author Sergei Begletsov
  * @since 01.12.2021
- * @version 1
+ * @version 2
  */
 
 public class SimpleStack<T> {
@@ -23,5 +23,13 @@ public class SimpleStack<T> {
      */
     public T pop() {
         return linked.deleteFirst();
+    }
+
+    /**
+     * Метод проверяет есть ли следующий элемент коллекции
+     * @return true - , false -
+     */
+    public boolean isEmpty() {
+        return !linked.iterator().hasNext();
     }
 }
