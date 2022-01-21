@@ -1,9 +1,11 @@
 package ru.job4j.collection;
 
+import java.util.NoSuchElementException;
+
 /** Класс SimpleQueue реализует очередь на двух стеках
  * @author Sergei Begletsov
  * @since 03.12.2021
- * @version 2
+ * @version 3
  */
 
 public class SimpleQueue<T> {
@@ -15,6 +17,9 @@ public class SimpleQueue<T> {
      * @return первое значение элемента
      */
     public T poll() {
+        if (in.isEmpty() && out.isEmpty()) {
+            throw new NoSuchElementException();
+        }
         if (out.isEmpty()) {
             while (!in.isEmpty()) {
                 out.push(in.pop());
