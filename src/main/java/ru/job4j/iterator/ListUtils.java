@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /** Класс ListUtils практика работы с методами ListIterator'а
  * @author Sergei Begletsov
  * @since 21.01.2022
- * @version 1
+ * @version 2
  */
 
 public class ListUtils {
@@ -20,14 +21,8 @@ public class ListUtils {
      */
     public static <T> void addBefore(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> iterator = list.listIterator();
-        while (iterator.hasNext()) {
-            if (iterator.nextIndex() == index) {
-                iterator.add(value);
-                break;
-            }
-            iterator.next();
-        }
+        ListIterator<T> iterator = list.listIterator(index);
+        iterator.add(value);
     }
 
     /**
@@ -38,14 +33,8 @@ public class ListUtils {
      */
     public static <T> void addAfter(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> iterator = list.listIterator(list.size());
-        while (iterator.hasPrevious()) {
-            if (iterator.previousIndex() == index) {
-                iterator.add(value);
-                break;
-            }
-            iterator.previous();
-        }
+        ListIterator<T> iterator = list.listIterator(index + 1);
+        iterator.add(value);
     }
 
     /**
@@ -83,8 +72,11 @@ public class ListUtils {
      * @param elements список элементов под удаление
      */
     public static <T> void removeAll(List<T> list, List<T> elements) {
-        for (int i = 0; i < elements.size(); i++) {
-            list.remove(elements.get(i));
+        ListIterator<T> listIterator = list.listIterator();
+        while (listIterator.hasNext()) {
+            if (elements.contains(listIterator.next())) {
+                listIterator.remove();
+            }
         }
     }
 }
