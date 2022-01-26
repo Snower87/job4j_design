@@ -1,9 +1,6 @@
 package ru.job4j.collection.map;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class User {
     private String name;
@@ -16,9 +13,16 @@ public class User {
         this.birthday = birthday;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
     public static void main(String[] args) {
-        User user1 = new User("Anton", 2, new GregorianCalendar(1982, Calendar.AUGUST, 30));
-        User user2 = new User("Anton", 2, new GregorianCalendar(1982, Calendar.AUGUST, 30));
+        Calendar dateBirth = new GregorianCalendar(1982, Calendar.AUGUST, 30);
+        dateBirth.set(Calendar.MILLISECOND, 29);
+        User user1 = new User("Anton", 2, dateBirth);
+        User user2 = new User("Anton", 2, dateBirth);
         Map<User, Object> hashMap = new HashMap<>();
         hashMap.put(user1, new Object());
         hashMap.put(user2, new Object());
@@ -41,5 +45,9 @@ public class User {
         System.out.println("user2 hash = " + h2);
         int i2 = (16 - 1) & h2;
         System.out.println("Индекс бакета user2 = " + i2);
+        System.out.println();
+
+        System.out.println("Size map: " + hashMap.size());
+        System.out.println(hashMap.keySet());
     }
 }
