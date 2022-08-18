@@ -48,7 +48,9 @@ public class User {
         return h;
     }
 
-    // the function that returns the index from the rehashed hash
+    /**
+     * The function that returns the index from the rehashed hash
+      */
     int indexFor(int h, int length) {
         return h & (length - 1);
     }
