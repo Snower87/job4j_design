@@ -32,10 +32,20 @@ public class User {
                 Objects.equals(birthday, user.birthday);
     }
 
-    // the "rehash" function in JAVA 8 that directly takes the key
+    /**
+     * The "rehash" function in JAVA 8 that directly takes the key
+     * @param key object
+     * @return hash-value for Object
+     */
     final int hash(Object key) {
         int h;
-        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+        if (key == null) {
+            h = 0;
+        } else {
+            h = key.hashCode();
+            h ^= (h >>> 16);
+        }
+        return h;
     }
 
     // the function that returns the index from the rehashed hash
