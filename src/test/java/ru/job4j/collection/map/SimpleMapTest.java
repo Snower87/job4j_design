@@ -170,4 +170,11 @@ public class SimpleMapTest {
         assertThat(map.put(0, "0")).isTrue();
         assertThat(map.get(null)).isNull();
     }
+
+    @Test
+    void whenCheckHasNext() {
+        Iterator<Integer> it = map.iterator();
+        assertThat(it.hasNext()).isTrue();
+        assertThat(it.next()).isEqualTo(1);
+    }
 }

@@ -3,12 +3,12 @@ package ru.job4j.collection.map;
 import java.util.*;
 
 /**
- * Класс SimpleMap реализует собственную структуру данных hashMap на базе массива (#49)
+ * Класс SimpleMap реализует собственную структуру данных hashMap на базе массива (#51)
  * @param <K> - ключ
  * @param <V> - значение
  * @author Sergei Begletsov
  * @since 25.10.2022
- * @version 1
+ * @version 2
  */
 
 public class SimpleMap<K, V> implements Map<K, V> {
@@ -44,6 +44,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
             table[index] = new MapEntry<>(key, value);
         }
         return rsl;
+    }
+
+    public int getHashCodeForAll(K key) {
+        return key == null ? 0 : key.hashCode();
     }
 
     private int hash(int hashCode) {
@@ -98,9 +102,15 @@ public class SimpleMap<K, V> implements Map<K, V> {
         if (Objects.nonNull(key)) {
             i = indBacket(key);
         }
-        if (table[i] != null && table[i].key == key) {
+        if (table[i] != null && table[i].key != null && getHashCodeForAll(table[i].key) == getHashCodeForAll(key) &&
+                key != null && key.equals(table[i].key)) {
             rsl = table[i].value;
         }
+        if (table[i] != null && table[i].key == null && getHashCodeForAll(table[i].key) == getHashCodeForAll(key) &&
+                 key == null) {
+            rsl = table[i].value;
+        }
+
         return rsl;
     }
 
@@ -116,7 +126,15 @@ public class SimpleMap<K, V> implements Map<K, V> {
         if (Objects.nonNull(key)) {
             i = indBacket(key);
         }
-        if (table[i] != null && table[i].key == key) {
+        if (table[i] != null && table[i].key != null && getHashCodeForAll(table[i].key) == getHashCodeForAll(key) &&
+                 key != null && key.equals(table[i].key)) {
+            table[i] = null;
+            count--;
+            modCount++;
+            rsl = true;
+        }
+        if (table[i] != null && table[i].key == null && getHashCodeForAll(table[i].key) == getHashCodeForAll(key) &&
+                key == null) {
             table[i] = null;
             count--;
             modCount++;
@@ -136,10 +154,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                while (point < capacity) {
-                    if (table[point] != null) {
-                        break;
-                    }
+                while (point < capacity && table[point] == null) {
                     point++;
                 }
                 return point < capacity;
